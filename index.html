@@ -1,0 +1,1138 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Link Vision</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout concept v2: clean, light and spacious. White ground, mint panels, one navy band for contrast.
+   Sora headlines, Public Sans body. Real photos from the portfolio, line icons, one live workflow card in the hero. */
+:root{
+  --bg:#FFFFFF;
+  --mist:#F4F8F6;
+  --mint:#E4F3E8;
+  --ink:#0B1F2E;          /* navy ink */
+  --muted:#4F6376;
+  --line:#E0E8E4;
+  --surface:#FFFFFF;
+  --green:#2A9748;        /* brand green, fills */
+  --green-t:#1B7436;      /* brand green, text-safe */
+  --lime:#A5D63A;
+  --navy:#0B1F2E;
+  --navy-fg:#EAF2F0;
+  --navy-muted:#9FB6C0;
+  --navy-line:#24404F;
+  --shadow:rgba(11,31,46,.16);
+  --good:#1B7436; --good-bg:#DFF1E3;
+  --warn:#85580A; --warn-bg:#FBEBC6;
+  --risk:#9B2C2C; --risk-bg:#F8DDDD;
+  --f-head:'Sora','Segoe UI',system-ui,sans-serif;
+  --f-body:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#08141D; --mist:#0C1B27; --mint:#0F2B23; --ink:#E8F1F2; --muted:#9BB0BB; --line:#1D3342; --surface:#0E202D;
+    --green:#3DB75E; --green-t:#7FD99A; --navy:#050E15; --navy-line:#1B3342; --shadow:rgba(0,0,0,.5);
+    --good:#8EE0A3; --good-bg:#12351F; --warn:#F2C45C; --warn-bg:#3A2D0B; --risk:#F2A0A0; --risk-bg:#3D1717;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#08141D; --mist:#0C1B27; --mint:#0F2B23; --ink:#E8F1F2; --muted:#9BB0BB; --line:#1D3342; --surface:#0E202D;
+  --green:#3DB75E; --green-t:#7FD99A; --navy:#050E15; --navy-line:#1B3342; --shadow:rgba(0,0,0,.5);
+  --good:#8EE0A3; --good-bg:#12351F; --warn:#F2C45C; --warn-bg:#3A2D0B; --risk:#F2A0A0; --risk-bg:#3D1717;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+h1,h2,h3,h4{font-family:var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.025em}
+p{margin:0}
+a{color:inherit}
+svg.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+.on-navy :focus-visible{outline-color:var(--lime)}
+.wrap{max-width:1200px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{scroll-margin-top:90px}
+.band{padding-block:clamp(72px,10vw,136px)}
+.mist{background:var(--mist)}
+.on-navy{background:var(--navy);color:var(--navy-fg)}
+.lead{font-size:1.14rem;color:var(--muted);max-width:60ch}
+.on-navy .lead{color:var(--navy-muted)}
+.h2{font-size:clamp(2rem,4vw,3.1rem);font-weight:650;line-height:1.1;max-width:22ch}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(40px,6vw,72px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:600 .98rem/1 var(--f-body);padding:1rem 1.5rem;border-radius:999px;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px var(--shadow)}
+.btn.green{background:var(--green);border-color:var(--green);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.lime{background:var(--lime);border-color:var(--lime);color:#0B1F2E}
+.btn.ghost-navy{background:transparent;color:var(--navy-fg);border-color:var(--navy-line)}
+.btn.ghost-navy:hover{border-color:var(--navy-fg)}
+
+/* announce + header */
+.announce{background:var(--navy);color:var(--navy-fg);font-size:.9rem}
+.announce .wrap{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding-block:9px;text-align:center}
+.announce a{color:var(--lime);font-weight:600}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:14px}
+.logo{display:block;line-height:0;border-radius:8px}
+.logo img{height:38px;width:auto;display:block}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .logo{background:#fff;padding:6px 10px}}
+:root[data-theme="dark"] .logo{background:#fff;padding:6px 10px}
+nav.main{display:flex;gap:30px;align-items:center;font-weight:500;font-size:.97rem}
+nav.main a{text-decoration:none;color:var(--muted)}
+nav.main a:hover{color:var(--ink)}
+.hd-right{display:flex;align-items:center;gap:10px}
+header.top .btn{padding:.8rem 1.3rem;font-size:.93rem}
+.menu-btn{display:none;font:600 .95rem/1 var(--f-body);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:.8rem 1.1rem;cursor:pointer}
+@media(max-width:900px){nav.main{display:none}.menu-btn{display:inline-block}}
+.dd{position:relative}
+.dd-btn{font:500 .97rem/1 var(--f-body);color:var(--muted);background:none;border:0;padding:6px 0;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.dd-btn:hover,.dd-btn[aria-expanded="true"]{color:var(--ink)}
+.dd-menu{position:absolute;left:-18px;top:calc(100% + 16px);width:400px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:10px;box-shadow:0 30px 60px -24px var(--shadow);z-index:70}
+.dd-menu::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px}
+.dd-menu a{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:14px;border-radius:14px;text-decoration:none;color:var(--ink);align-items:center}
+.dd-menu a:hover,.dd-menu a:focus-visible{background:var(--mist)}
+.dd-ic{width:44px;height:44px;border-radius:12px;background:var(--mint);color:var(--green-t);display:grid;place-items:center;font-size:1.4rem}
+.dd-menu b{display:block;font-family:var(--f-head);font-weight:600;font-size:1rem;letter-spacing:-.01em}
+.dd-menu span.t{display:block;color:var(--muted);font-size:.88rem;line-height:1.4;margin-top:2px}
+.mnav{background:var(--bg);border-bottom:1px solid var(--line);max-height:calc(100vh - 80px);overflow-y:auto}
+.mnav a{display:block;padding:13px 0;font-weight:500;text-decoration:none;border-top:1px solid var(--line)}
+.mnav .mh{margin:16px 0 4px;color:var(--muted);font-size:.88rem}
+@media(min-width:901px){.mnav{display:none!important}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:clamp(48px,7vw,104px) clamp(56px,7vw,96px);background:radial-gradient(55% 70% at 88% 12%,var(--mint),transparent 72%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5.6fr);gap:clamp(32px,5vw,80px);align-items:center}
+@media(max-width:1000px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
+h1{font-size:clamp(2.6rem,5.4vw,4.5rem);font-weight:700;line-height:1.04;letter-spacing:-.04em}
+.hero .lead{margin-top:26px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.proof{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:40px;color:var(--muted);font-size:.93rem}
+.proof span{display:inline-flex;align-items:center;gap:9px}
+.proof .ic{font-size:1.2rem;color:var(--green-t)}
+.hv{position:relative;min-width:0}
+.hv-net{position:absolute;inset:-16% -14% -16% -14%;width:128%;height:132%;z-index:0;color:var(--green)}
+.panel{position:relative;z-index:1;background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:clamp(20px,3vw,30px);box-shadow:0 40px 80px -36px var(--shadow);min-width:0}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.panel-head h2{font:600 1.05rem/1.2 var(--f-head);letter-spacing:-.01em}
+.pill-live{display:inline-flex;gap:8px;align-items:center;font-size:.88rem;color:var(--green-t);font-weight:600;background:var(--mint);padding:.3rem .75rem;border-radius:999px}
+.pill-live i{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tab{font:500 .9rem/1 var(--f-body);color:var(--ink);background:transparent;border:1.5px solid var(--line);padding:.65rem 1rem;border-radius:999px;cursor:pointer}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+.flow{list-style:none;margin:22px 0 0;padding:0;position:relative}
+.flow::before{content:"";position:absolute;left:19px;top:22px;bottom:22px;width:2px;background:var(--line)}
+.flow li{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;padding:12px 14px;margin:0 -14px;border-radius:16px;opacity:.55;transition:opacity .4s,background .4s}
+.flow li.active,.flow li.done{opacity:1}
+.flow li.active{background:var(--mist)}
+.flow .dot{width:40px;height:40px;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:grid;place-items:center;font:700 .85rem/1 var(--f-body);position:relative;z-index:1;transition:background .3s,border-color .3s,color .3s}
+.flow li.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.flow li.active .dot{border-color:var(--green);color:var(--green-t);box-shadow:0 0 0 5px var(--mint)}
+.flow h3{font:600 1rem/1.3 var(--f-head);letter-spacing:-.01em}
+.flow p{font-size:.93rem;color:var(--muted);margin-top:3px;line-height:1.5}
+.panel-foot{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* trust + stats */
+.trust{padding-block:36px;border-block:1px solid var(--line)}
+.trust .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 40px}
+.trust small{color:var(--muted);font-size:.9rem}
+.names{display:flex;flex-wrap:wrap;gap:8px 34px;font-family:var(--f-head);font-weight:600;font-size:1.2rem;letter-spacing:-.02em;color:var(--muted)}
+.statpanel{margin-top:0;background:var(--mint);border-radius:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:clamp(24px,4vw,44px) 0}
+.stat{padding:0 clamp(18px,3vw,36px)}
+.stat+.stat{border-left:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
+.stat b{display:block;font-family:var(--f-head);font-size:clamp(2rem,3.6vw,3rem);font-weight:650;letter-spacing:-.04em;line-height:1.05}
+.stat span{display:block;margin-top:8px;color:var(--muted);font-size:.95rem;line-height:1.45}
+@media(max-width:820px){.statpanel{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}.stat:nth-child(3){border-left:0}}
+
+/* services */
+.svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media(max-width:1000px){.svcs{grid-template-columns:minmax(0,1fr)}}
+.svc{display:flex;flex-direction:column;border-radius:28px;padding:clamp(26px,3vw,38px);background:var(--surface);border:1px solid var(--line);min-width:0}
+.svc-vis{height:150px;border-radius:20px;background-color:var(--mint);background-image:radial-gradient(color-mix(in srgb,var(--green) 28%,transparent) 1.2px,transparent 1.4px);background-size:16px 16px;display:grid;place-items:center;color:var(--green-t);font-size:3.6rem}
+.svc h3{font-size:clamp(1.55rem,2.4vw,1.95rem);font-weight:650;line-height:1.12;margin-top:28px}
+.svc .tag{margin-top:12px;font-weight:600;color:var(--green-t)}
+.svc .checks{flex:1}
+.svc.s2{background:var(--navy);border-color:var(--navy);color:var(--navy-fg)}
+.svc.s2 .svc-vis{background-color:rgba(255,255,255,.06);background-image:radial-gradient(rgba(165,214,58,.35) 1.2px,transparent 1.4px);color:var(--lime)}
+.svc.s2 .tag{color:var(--lime)}
+.svc.s2 .checks li::before{background:var(--lime)}
+.svc.s3{background:var(--mist)}
+.svc.s3 .svc-vis{background-color:var(--surface)}
+.checks{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:12px}
+.checks li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;font-size:.98rem}
+.checks li::before{content:"";width:8px;height:8px;margin:.55em 0 0 3px;border-radius:50%;background:var(--green)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.svc .btn{padding:.85rem 1.2rem;font-size:.93rem}
+.svc.s2 .btn.ghost{color:var(--navy-fg);border-color:var(--navy-line)}
+
+.demo{margin-top:clamp(36px,5vw,64px)}
+.demo .tabs{margin-top:0}
+.demo-panel{margin-top:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,32px);min-width:0}
+.mist .card{border-color:transparent}
+.card h3{font:600 1rem/1.3 var(--f-head);letter-spacing:-.01em;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th{font-weight:500;color:var(--muted);text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:15px 14px 15px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:500;min-width:190px}
+.pl{display:inline-block;padding:.22rem .65rem;border-radius:999px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.pl.g{background:var(--good-bg);color:var(--good)}.pl.w{background:var(--warn-bg);color:var(--warn)}.pl.r{background:var(--risk-bg);color:var(--risk)}
+.note{font-size:.88rem;color:var(--muted);margin-top:16px}
+.on-navy .note{color:var(--navy-muted)}
+.two-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media(max-width:820px){.two-card{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0;padding:0;list-style:none}
+.chips li{border:1.5px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-size:.93rem;background:var(--surface)}
+.stack-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:14px}
+.stack-list li{padding-top:14px;border-top:1px solid var(--line);display:grid;gap:2px}
+.stack-list li:first-child{border-top:0;padding-top:0}
+.stack-list span{font-size:.93rem;color:var(--muted)}
+.tracks{list-style:none;margin:12px 0 0;padding:0}
+.tracks li{padding:16px 0;border-bottom:1px solid var(--line)}
+.tracks li:last-child{border-bottom:0}
+.tracks b{font-family:var(--f-head);font-weight:600;font-size:1.08rem;letter-spacing:-.015em}
+.tracks span{display:block;font-size:.93rem;color:var(--muted)}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,96px);align-items:center}
+@media(max-width:960px){.about{grid-template-columns:minmax(0,1fr)}}
+.about .copy{margin-top:22px;color:var(--muted);max-width:52ch}
+.facts{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px}
+.facts li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:center}
+.fic{width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--green-t);display:grid;place-items:center;font-size:1.25rem}
+.collage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.collage figure{margin:0;border-radius:22px;overflow:hidden;background:var(--mist);position:relative;min-width:0}
+.collage img{display:block;width:100%;height:100%;object-fit:cover}
+.collage .f-team{grid-column:1/-1;aspect-ratio:640/230}
+.collage .f-expo{grid-row:span 2;aspect-ratio:auto}
+.collage .f-room,.collage .f-desk{aspect-ratio:372/230}
+.collage figcaption{position:absolute;left:12px;bottom:12px;background:var(--surface);color:var(--ink);font-size:.82rem;font-weight:600;padding:.3rem .7rem;border-radius:999px}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.tiles{grid-template-columns:minmax(0,1fr)}}
+.tile{padding:28px;border:1px solid var(--line);border-radius:22px;background:var(--surface);min-width:0}
+.tile .ti{width:52px;height:52px;border-radius:14px;background:var(--mint);color:var(--green-t);display:grid;place-items:center;font-size:1.6rem}
+.tile h3{font-size:1.2rem;font-weight:600;letter-spacing:-.015em;margin-top:20px;line-height:1.25}
+.tile p{margin-top:8px;color:var(--muted);font-size:.96rem}
+.mist .tile{border-color:transparent}
+.tiles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1100px){.tiles.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.tiles.four{grid-template-columns:minmax(0,1fr)}}
+
+/* training record */
+.trwrap .statpanel{background:var(--surface);grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:820px){.trwrap .statpanel{grid-template-columns:minmax(0,1fr);row-gap:24px}.trwrap .stat+.stat{border-left:0}}
+.rec{margin-top:18px}
+.rec table{min-width:780px}
+.rec td{vertical-align:top}
+.rec td:first-child{min-width:250px;font-weight:600}
+.rec td:nth-child(2){min-width:130px}
+.rec td:nth-child(4){white-space:nowrap}
+.rec td:last-child{white-space:nowrap;color:var(--muted)}
+
+/* cases / products */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media(max-width:980px){.cases{grid-template-columns:minmax(0,1fr)}}
+.case{border:1px solid var(--line);border-radius:26px;padding:clamp(26px,3vw,36px);display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface)}
+.case .big{font-family:var(--f-head);font-size:clamp(3.2rem,5vw,4.4rem);font-weight:700;letter-spacing:-.05em;line-height:.95;color:var(--green-t)}
+.case .lab{margin-top:-8px;color:var(--muted);font-size:.93rem}
+.case h3{font-size:1.45rem;font-weight:650;margin-top:8px}
+.case p{color:var(--muted);font-size:.97rem;flex:1}
+.case .stk{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.prods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media(max-width:980px){.prods{grid-template-columns:minmax(0,1fr)}}
+.prod{border:1px solid var(--navy-line);border-radius:26px;padding:clamp(26px,3vw,36px);background:rgba(255,255,255,.04);min-width:0}
+.prod .ti{width:52px;height:52px;border-radius:14px;background:rgba(165,214,58,.14);color:var(--lime);display:grid;place-items:center;font-size:1.6rem}
+.prod h3{font-size:1.45rem;font-weight:650;margin-top:22px}
+.prod p{margin-top:10px;color:var(--navy-muted);font-size:.97rem}
+.prod ul{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.prod li{border:1px solid var(--navy-line);border-radius:999px;padding:.3rem .8rem;font-size:.85rem}
+.prod{display:flex;flex-direction:column}
+.prod p{flex:1}
+.prod .gh{display:inline-block;margin-top:20px;color:var(--lime);font-weight:600;font-size:.93rem;text-decoration:none;border-bottom:1px solid transparent}
+.prod .gh:hover{border-bottom-color:var(--lime)}
+.tech .chips li{font-size:1.02rem;padding:.7rem 1.2rem}
+.tech .chips{margin-top:26px}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
+.steps li{position:relative;padding:30px 28px;counter-increment:s;background:var(--mist);border-radius:22px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font:700 .95rem/1 var(--f-body)}
+.steps h3{font-size:1.35rem;font-weight:650;margin-top:20px}
+.steps p{color:var(--muted);margin-top:8px;font-size:.97rem}
+@media(max-width:980px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.steps{grid-template-columns:minmax(0,1fr)}}
+
+/* reach */
+.off{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,88px);align-items:start}
+@media(max-width:900px){.off{grid-template-columns:minmax(0,1fr)}}
+.dcard{background:rgba(255,255,255,.05);border:1px solid var(--navy-line);border-radius:24px;padding:clamp(22px,3vw,32px);min-width:0}
+.clocks{display:grid;gap:16px}
+.clock{display:grid;grid-template-columns:150px 70px minmax(0,1fr);gap:16px;align-items:center}
+.clock small{display:block;color:var(--navy-muted);font-size:.82rem}
+.clock time{font-variant-numeric:tabular-nums;font-weight:600}
+.bar{position:relative;height:14px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden}
+.bar .seg{position:absolute;top:0;bottom:0;background:var(--lime);opacity:.9}
+.bar .now{position:absolute;top:-2px;bottom:-2px;width:3px;background:#fff;border-radius:2px}
+@media(max-width:560px){.clock{grid-template-columns:minmax(0,1fr) auto;row-gap:6px}.clock .bar{grid-column:1/-1}}
+
+/* team */
+.team{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,88px);align-items:start}
+@media(max-width:900px){.team{grid-template-columns:minmax(0,1fr)}}
+.who h3{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:650}
+.who .role{color:var(--green-t);font-weight:600;margin-top:4px}
+.who p.bio{margin-top:14px;color:var(--muted);max-width:58ch}
+.cred{list-style:none;margin:22px 0 0;padding:0}
+.cred li{padding:13px 0;border-top:1px solid var(--line);display:grid}
+.cred li:last-child{border-bottom:1px solid var(--line)}
+.cred span{font-size:.93rem;color:var(--muted)}
+.members td:first-child{min-width:0;padding-right:16px;font-weight:600}
+.members td:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* faq */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 44px 24px 0;font-family:var(--f-head);font-weight:600;font-size:1.2rem;letter-spacing:-.015em;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:1.6rem;font-weight:400;transition:transform .2s;color:var(--green-t)}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 44px 26px 0;color:var(--muted);max-width:68ch}
+
+/* cta + contact + footer */
+.cta{padding-block:clamp(56px,8vw,96px)}
+.cta .box{background:var(--navy);color:var(--navy-fg);border-radius:32px;padding:clamp(32px,6vw,72px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+.cta h2{font-size:clamp(1.9rem,3.8vw,3rem);font-weight:650;line-height:1.1;max-width:20ch}
+.cta .cta-row{margin-top:0}
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,88px);align-items:start}
+@media(max-width:900px){.contact{grid-template-columns:minmax(0,1fr)}}
+.rows{display:grid;margin-top:32px}
+.rw{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.rw:last-child{border-bottom:1px solid var(--line)}
+.rw small{display:block;color:var(--muted);font-size:.85rem}
+.rw b{font-weight:600;overflow-wrap:anywhere}
+.cp{font:500 .85rem/1 var(--f-body);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:.6rem .9rem;cursor:pointer;text-decoration:none}
+.cp:hover{border-color:var(--ink)}
+form{display:grid;gap:18px;background:var(--mist);border-radius:28px;padding:clamp(22px,4vw,40px)}
+.fld{display:grid;gap:7px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media(max-width:560px){.two{grid-template-columns:minmax(0,1fr)}}
+label{font-weight:500;font-size:.93rem}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:.85rem 1rem;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{border-color:var(--green);outline:none;box-shadow:0 0 0 4px var(--mint)}
+textarea{min-height:120px;resize:vertical}
+.out{border:1.5px dashed var(--green);border-radius:16px;padding:20px;background:var(--surface)}
+.out pre{white-space:pre-wrap;font:inherit;margin:0 0 16px;overflow-wrap:anywhere}
+.out .cta-row{margin-top:0}
+.err{color:var(--risk);font-size:.9rem}
+footer{background:var(--navy);color:var(--navy-muted);padding-block:clamp(48px,6vw,72px) 28px}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:36px}
+@media(max-width:900px){.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.fgrid{grid-template-columns:minmax(0,1fr)}}
+footer h4{font:600 1rem/1.3 var(--f-head);letter-spacing:-.01em;color:var(--navy-fg);margin-bottom:14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.95rem}
+footer a{text-decoration:none;color:var(--navy-muted)}
+footer a:hover{color:var(--navy-fg)}
+footer .brand{font-family:var(--f-head);font-size:1.5rem;font-weight:700;letter-spacing:-.03em;color:var(--navy-fg)}
+footer .brand-p{margin-top:10px;font-size:.95rem;max-width:34ch}
+.legal{margin-top:40px;padding-top:22px;border-top:1px solid var(--navy-line);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.88rem}
+.float-wa{position:fixed;z-index:40;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--green);color:#fff;border-radius:999px;padding:.9rem 1.3rem;font-weight:600;font-size:.95rem;text-decoration:none;box-shadow:0 14px 30px -12px var(--shadow)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+.hv{position:relative;min-width:0;padding:0 0 70px 0}
+.hp{margin:0;border-radius:26px;overflow:hidden;background:var(--mist);box-shadow:0 40px 80px -40px var(--shadow)}
+.hp img{display:block;width:100%;height:100%;object-fit:cover}
+.hp-main{aspect-ratio:1300/1019;margin-left:12%}
+.hp-side{position:absolute;left:0;bottom:0;width:52%;aspect-ratio:900/515;border:6px solid var(--bg)}
+.hb{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px -20px var(--shadow);max-width:230px}
+.hb b{display:block;font-family:var(--f-head);font-size:1.35rem;font-weight:650;letter-spacing:-.03em;color:var(--green-t);line-height:1.15}
+.hb span{display:block;font-size:.85rem;color:var(--muted);line-height:1.35;margin-top:3px}
+.hb-1{top:-22px;right:-10px}
+header.top .btn{white-space:nowrap}
+.hb-2{right:-10px;bottom:16px}
+@media(max-width:1000px){.hb-2{right:0}}
+@media(max-width:560px){.hv{padding-bottom:50px}.hp-main{margin-left:0}.hp-side{width:58%}.hb-1{position:static;margin-top:12px;max-width:none;display:none}.hb-2{bottom:-6px}}
+.wf{align-items:center}
+
+.trust{padding-block:clamp(40px,5vw,64px);border-block:1px solid var(--line)}
+.trust .wrap{display:block}
+.trust-h{text-align:center;color:var(--muted);font-size:.95rem;margin-bottom:26px}
+.logos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.logos li{background:#fff;border:1px solid var(--line);border-radius:16px;height:88px;display:flex;align-items:center;justify-content:center;padding:14px 18px;min-width:0;overflow:hidden}
+.logos img{min-width:0;max-width:100%;max-height:52px;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply;transition:transform .2s}
+.logos li{transition:border-color .2s,box-shadow .2s,transform .2s}
+.logos li:hover{border-color:var(--green);box-shadow:0 14px 30px -18px var(--shadow);transform:translateY(-2px)}
+@media(max-width:980px){.logos{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:600px){.logos{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.logos li{height:72px;padding:10px}.logos img{max-height:40px}}
+@media(max-width:480px){header.top .hd-right .btn{display:none}.logo img{height:32px}}
+.person{display:flex;align-items:center;gap:24px;margin-top:40px}
+.avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;flex:none;background:#fff;border:4px solid var(--surface);box-shadow:0 0 0 2px var(--green),0 20px 40px -20px var(--shadow)}
+@media(max-width:480px){.person{gap:16px}.avatar{width:96px;height:96px}}
+.shot{margin:0 0 6px;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:10px}
+.shot img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;min-width:0}
+.assoc{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:0}
+.assoc li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:center;padding:20px 0;border-top:1px solid var(--line)}
+.assoc li:first-child{border-top:0;padding-top:6px}
+.alogo{background:#fff;border:1px solid var(--line);border-radius:14px;height:84px;display:flex;align-items:center;justify-content:center;padding:12px 16px}
+.alogo img{max-width:100%;max-height:52px;width:auto;height:auto;min-width:0}
+.assoc b{font-family:var(--f-head);font-weight:600;font-size:1.1rem;letter-spacing:-.015em;display:block}
+.assoc span{display:block;color:var(--muted);font-size:.92rem;line-height:1.45;margin-top:2px}
+.assoc em{display:inline-block;white-space:nowrap;max-width:100%;overflow-wrap:anywhere;font-style:normal;font-variant-numeric:tabular-nums;font-size:.85rem;font-weight:600;color:var(--green-t);background:var(--mint);border-radius:999px;padding:.25rem .7rem;margin-top:8px}
+@media(max-width:480px){.assoc li{grid-template-columns:minmax(0,1fr);gap:12px}.alogo{width:160px}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-6M22 20H2"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 6h9M6.4 8.2l4.4 7.6M17.6 8.2l-4.4 7.6"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c3 2.4 9 2.4 12 0v-4.5M22 9v5"/></symbol>
+    <symbol id="i-ai" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5M10 12h4"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.8"/><path d="M11 18.5h2"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12h11l2-8H6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+    <symbol id="i-migrate" viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.6-8.9A6 6 0 0 1 18 8.5a4.3 4.3 0 0 1-.5 8.5"/><path d="M12 21v-8M9 15.5l3-3 3 3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></symbol>
+    <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4.5 10a10 10 0 0 1 15 0M7.5 13.3a6 6 0 0 1 9 0"/><circle cx="12" cy="17.5" r="1.2"/><path d="M12 19v2.5"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.5l9-5.5 9 5.5M5.5 10v8M10 10v8M14 10v8M18.5 10v8M3 20.5h18"/></symbol>
+    <symbol id="i-health" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5C7 4 10 4.2 12 6c2-1.8 5-2 8-.5V19c-3-1.5-6-1.3-8 .5-2-1.8-5-2-8-.5z"/><path d="M12 6v13.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3.5"/><path d="M10.5 9.3l4 2.7-4 2.7z"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 20.5V10l6 4v-4l6 4V5h3.5v15.5z"/><path d="M7 18h.01M11 18h.01M15 18h.01"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19.5C5 11 10 5 20 5c0 10-6 15-14.5 15"/><path d="M5 19.5c3-5 6-8.5 10-10.5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11.5a7 7 0 0 0-14 0C5 15 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.5-3.6 3-5.5 6-5.5s5.5 1.9 6 5.5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.5c2.2.2 3.7 1.8 4 4.5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.8 5 2.8-1.5-7.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+    <symbol id="i-hr" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><circle cx="12" cy="9.5" r="2.4"/><path d="M7.5 17c.6-2 2.3-3 4.5-3s3.9 1 4.5 3"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></symbol>
+  </defs>
+</svg>
+
+<div class="announce"><div class="wrap"><span>New: Corporate AI Training for pharma, healthcare and engineering teams.</span><a href="#training-record">See the training record</a></div></div>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Link Vision Software Solution Ltd, home"><img src="logo.png" alt="Link Vision Software Solution Ltd." width="738" height="159"></a>
+    <nav class="main" aria-label="Primary">
+      <div class="dd" id="dd">
+        <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-menu" id="dd-btn">Services <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="dd-menu" id="dd-menu" hidden>
+          <a href="#consulting"><span class="dd-ic"><svg class="ic"><use href="#i-chart"/></svg></span><span><b>Enterprise AI Consulting</b><span class="t">Find where AI pays off and plan it.</span></span></a>
+          <a href="#automation"><span class="dd-ic"><svg class="ic"><use href="#i-flow"/></svg></span><span><b>AI Automation</b><span class="t">Workflows that read, decide and act.</span></span></a>
+          <a href="#training"><span class="dd-ic"><svg class="ic"><use href="#i-cap"/></svg></span><span><b>Corporate AI Training</b><span class="t">Programmes for government, pharma, healthcare and engineering teams.</span></span></a>
+        </div>
+      </div>
+      <a href="#training-record">Training record</a>
+      <a href="#industries">Industries</a>
+      <a href="#work">Delivery</a>
+      <a href="#products">Products</a>
+      <a href="#reach">Global reach</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="hd-right"><a class="btn" href="#contact">Let's talk</a><button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
+  </div>
+  <div class="mnav" id="mnav" hidden>
+    <div class="wrap">
+      <p class="mh">Services</p>
+      <a href="#consulting">Enterprise AI Consulting</a>
+      <a href="#automation">AI Automation</a>
+      <a href="#training">Corporate AI Training</a>
+      <p class="mh">Explore</p>
+      <a href="#training-record">Training record</a>
+      <a href="#industries">Industries</a>
+      <a href="#work">Delivery</a>
+      <a href="#products">Products</a>
+      <a href="#reach">Global reach</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Enterprise AI that runs in production.</h1>
+      <p class="lead">Link Vision is a software company in Dhaka. Since 2017 we have built systems for telecom, banking and retail. Now we help international teams decide where AI pays off, automate the work around it, and train their people to run it.</p>
+      <div class="cta-row">
+        <a class="btn green" href="#contact">Book a consultation</a>
+        <a class="btn ghost" href="#offerings">See our services</a>
+      </div>
+      <div class="proof">
+        <span><svg class="ic"><use href="#i-award"/></svg>Member of BASIS, e-CAB and BACCO</span>
+        <span><svg class="ic"><use href="#i-globe"/></svg>Delivered in 5 countries</span>
+      </div>
+    </div>
+    <div class="hv">
+      <figure class="hp hp-main"><img src="hero-smartdoc.jpg" alt="Md Hasan Mahfuz leading a SmartDoc AI training session for doctors" width="1300" height="1019"></figure>
+      <figure class="hp hp-side"><img src="hero-optimind.jpg" alt="AI workshop for ophthalmologists at the National Institute of Ophthalmology and Hospital" width="900" height="515"></figure>
+      <div class="hb hb-1"><b>65+ doctors</b><span>SmartDoc AI, Bangladesh Society of Medicine</span></div>
+      <div class="hb hb-2"><b>1,000+</b><span>Participants trained in AI</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <p class="trust-h">Trusted by enterprise teams in telecom, banking, retail and healthcare</p>
+    <ul class="logos" aria-label="Selected clients">
+      <li><img src="clients/robi.png" alt="Robi" width="170" height="81" loading="lazy"></li>
+      <li><img src="clients/airtel.png" alt="Airtel" width="242" height="81" loading="lazy"></li>
+      <li><img src="clients/bracbank.png" alt="BRAC Bank" width="348" height="160" loading="lazy"></li>
+      <li><img src="clients/brac.png" alt="BRAC" width="297" height="77" loading="lazy"></li>
+      <li><img src="clients/pavilion.png" alt="Pavilion" width="168" height="73" loading="lazy"></li>
+      <li><img src="clients/nourish.png" alt="Nourish" width="234" height="80" loading="lazy"></li>
+      <li><img src="clients/nilorn.png" alt="Nilorn Worldwide" width="80" height="80" loading="lazy"></li>
+      <li><img src="clients/madinah.png" alt="Madinah Carpet" width="345" height="137" loading="lazy"></li>
+      <li><img src="clients/nixon.png" alt="Nixon Footwear" width="334" height="96" loading="lazy"></li>
+      <li><img src="clients/sano.png" alt="Sano Chemicals" width="370" height="98" loading="lazy"></li>
+      <li><img src="clients/shihab.png" alt="Dr. Shihab Laser Dental" width="357" height="82" loading="lazy"></li>
+      <li><img src="clients/eparkit.png" alt="ePark IT" width="362" height="92" loading="lazy"></li>
+    </ul>
+  </div>
+</section>
+
+<section id="workflow" class="band">
+  <div class="wrap off wf">
+    <div>
+      <h2 class="h2">See an AI workflow run</h2>
+      <p class="lead" style="margin-top:20px">This is the kind of system our AI Automation team builds. Pick an industry to watch a request move from arrival to action, with a person approving the uncertain cases.</p>
+      <div class="cta-row"><a class="btn green" href="#contact" data-interest="AI Automation">Discuss automation</a></div>
+    </div>
+    <aside class="panel" aria-label="Example AI workflow">
+      <div class="panel-head">
+        <h2>An AI workflow, step by step</h2>
+        <span class="pill-live" id="status"><i></i><span>Running</span></span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Choose an industry example" id="tabs"></div>
+      <ol class="flow" id="flow"></ol>
+      <div class="panel-foot"><span>Illustrative example, not client data.</span><span id="count"></span></div>
+    </aside>
+  </div>
+</section>
+
+<section id="offerings" class="band mist">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Three ways to work with Link Vision</h2>
+      <p class="lead">Start with the one that matches where you are. Most clients begin with consulting, then automate, then train their own teams to take over.</p>
+    </div>
+    <div class="svcs">
+      <article class="svc s1" id="consulting">
+        <div class="svc-vis"><svg class="ic"><use href="#i-chart"/></svg></div>
+        <h3>Enterprise AI Consulting</h3>
+        <p class="tag">Know where AI pays off before you spend on it.</p>
+        <ul class="checks">
+          <li>AI readiness and data assessment</li>
+          <li>Use-case ranking by value, effort and risk</li>
+          <li>Target architecture and build-or-buy decisions</li>
+          <li>Security, governance and delivery roadmap</li>
+        </ul>
+        <div class="acts"><a class="btn green" href="#contact" data-interest="Enterprise AI Consulting">Discuss consulting</a><a class="btn ghost" href="#examples" data-tab="consulting">See an example</a></div>
+      </article>
+      <article class="svc s2" id="automation">
+        <div class="svc-vis"><svg class="ic"><use href="#i-flow"/></svg></div>
+        <h3>AI Automation</h3>
+        <p class="tag">Replace manual handoffs with workflows that run themselves.</p>
+        <ul class="checks">
+          <li>Document, email and chat processing in Bengali and English</li>
+          <li>AI agents with human approval steps</li>
+          <li>Connections to your ERP, CRM, HRIS and core systems</li>
+          <li>Monitoring, audit trail and rollback built in</li>
+        </ul>
+        <div class="acts"><a class="btn lime" href="#contact" data-interest="AI Automation">Discuss automation</a><a class="btn ghost" href="#examples" data-tab="automation">See an example</a></div>
+      </article>
+      <article class="svc s3" id="training">
+        <div class="svc-vis"><svg class="ic"><use href="#i-cap"/></svg></div>
+        <h3>Corporate AI Training</h3>
+        <p class="tag">Teams that use AI well, on their own work.</p>
+        <ul class="checks">
+          <li>For government, pharma, healthcare and engineering teams</li>
+          <li>Hands-on exercises with your own materials</li>
+          <li>Led by a JICA-certified Trainer of Trainers</li>
+          <li>1,000+ participants trained, from half-day to five-day formats</li>
+        </ul>
+        <div class="acts"><a class="btn green" href="#contact" data-interest="Corporate AI Training">Discuss training</a><a class="btn ghost" href="#training-record">See the training record</a></div>
+      </article>
+    </div>
+
+    <div class="demo" id="examples">
+      <div class="tabs" role="tablist" aria-label="Offering examples" id="otabs"></div>
+      <div class="demo-panel">
+        <div id="op-consulting" role="tabpanel" class="card">
+          <h3>Use-case scorecard (example output)</h3>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Use case</th><th>Value</th><th>Effort</th><th>Risk</th><th>Call</th></tr></thead>
+              <tbody>
+                <tr><td>Support ticket triage</td><td><span class="pl g">High</span></td><td><span class="pl g">Low</span></td><td><span class="pl g">Low</span></td><td>Build now</td></tr>
+                <tr><td>Invoice and contract extraction</td><td><span class="pl g">High</span></td><td><span class="pl w">Medium</span></td><td><span class="pl g">Low</span></td><td>Build now</td></tr>
+                <tr><td>Demand forecasting</td><td><span class="pl w">Medium</span></td><td><span class="pl r">High</span></td><td><span class="pl w">Medium</span></td><td>Pilot first</td></tr>
+                <tr><td>Credit decision assistant</td><td><span class="pl g">High</span></td><td><span class="pl r">High</span></td><td><span class="pl r">High</span></td><td>Design controls first</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Sample structure of the ranking you receive. Your rows come from your own processes.</p>
+        </div>
+        <div id="op-automation" role="tabpanel" class="two-card" hidden>
+          <div class="card">
+            <h3>Connects to what you already run</h3>
+            <ul class="chips"><li>ERP</li><li>CRM</li><li>HRIS</li><li>Core banking</li><li>eCommerce</li><li>Email and WhatsApp</li><li>Document stores</li><li>Single sign-on</li></ul>
+          </div>
+          <div class="card">
+            <h3>Every workflow ships with</h3>
+            <ul class="stack-list">
+              <li><b>A human approval gate</b><span>Low-confidence cases go to a person, with the evidence attached.</span></li>
+              <li><b>A full audit trail</b><span>Each decision records its input, its reasoning and who approved it.</span></li>
+              <li><b>Live monitoring</b><span>Accuracy, volume and exceptions on one screen for your operations team.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div id="op-training" role="tabpanel" class="card" hidden>
+          <h3>Programme tracks</h3>
+          <ul class="tracks">
+            <li><b>Government and public sector</b><span>AI for procurement, AI-assisted project management, generative AI and leadership</span></li>
+            <li><b>Pharma and healthcare</b><span>Specialty courses for doctors, plant automation, sales productivity and Computer System Validation with AI</span></li>
+            <li><b>Leadership, security and governance</b><span>Cybersecurity, ethics and data privacy for professionals and boards</span></li>
+            <li><b>Engineering teams</b><span>Software architecture, Agile, prompt engineering and Claude or ChatGPT programming</span></li>
+            <li><b>Startups and universities</b><span>Mentoring and innovation coaching</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="band mist">
+  <div class="wrap about">
+    <div>
+      <h2 class="h2">A Dhaka engineering team with an international record</h2>
+      <p class="copy">Link Vision started in 2017 as a custom software company. Today 22 specialists build, secure and run enterprise systems for clients across Bangladesh, Malaysia, the UK, the USA and Canada, and now bring AI into that work.</p>
+      <ul class="facts">
+        <li><span class="fic"><svg class="ic"><use href="#i-users"/></svg></span><span>22 specialists, 15 full-time and 7 part-time</span></li>
+        <li><span class="fic"><svg class="ic"><use href="#i-lock"/></svg></span><span>Secure development workspaces and dedicated collaboration rooms</span></li>
+        <li><span class="fic"><svg class="ic"><use href="#i-award"/></svg></span><span>Member of BASIS, e-CAB and BACCO</span></li>
+        <li><span class="fic"><svg class="ic"><use href="#i-pin"/></svg></span><span>Headquarters at Mirpur-11, Dhaka</span></li>
+      </ul>
+    </div>
+    <div class="collage">
+      <figure class="f-team"><img src="team.jpg" alt="The Link Vision team in company shirts" width="640" height="183"><figcaption>Our team</figcaption></figure>
+      <figure class="f-expo"><img src="expo.jpg" alt="Link Vision booth at a technology expo" width="475" height="384" loading="lazy"><figcaption>At a tech expo</figcaption></figure>
+      <figure class="f-room"><img src="room.jpg" alt="Collaboration room with a whiteboard and display" width="372" height="188" loading="lazy"><figcaption>Collaboration room</figcaption></figure>
+      <figure class="f-desk"><img src="desk.jpg" alt="Developers at secure workstations" width="420" height="282" loading="lazy"><figcaption>Dev workspace</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="statpanel" aria-label="Company facts">
+      <div class="stat"><b>2017</b><span>Founded in Dhaka</span></div>
+      <div class="stat"><b>22</b><span>Specialists on the team</span></div>
+      <div class="stat"><b>5</b><span>Countries with delivered projects</span></div>
+      <div class="stat"><b>1,000+</b><span>Participants trained in AI</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities" class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">The engineering behind the AI</h2>
+      <p class="lead">AI projects fail on integration, data and security more often than on models. These are the capabilities our delivery team brings to every engagement.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-ai"/></svg></div><h3>AI and data analysis</h3><p>Analytics, search and language models connected to your data.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-code"/></svg></div><h3>Software development</h3><p>Custom enterprise applications on .NET, PHP and modern web stacks.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-web"/></svg></div><h3>Web design and development</h3><p>Fast, responsive sites and portals for customers and staff.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-mobile"/></svg></div><h3>Mobile app development</h3><p>Android and iOS apps with secure sign-in and live data.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-cart"/></svg></div><h3>eCommerce integration</h3><p>Storefronts, inventory and payment flows at retail scale.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-layers"/></svg></div><h3>Content management systems</h3><p>WordPress and custom CMS platforms your team can run.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-migrate"/></svg></div><h3>Application migration</h3><p>Move legacy systems to modern infrastructure without losing data.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-shield"/></svg></div><h3>Software quality testing</h3><p>Test plans and automation that catch defects before release.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-lock"/></svg></div><h3>Cyber security</h3><p>Secure design, access control and review for sensitive systems.</p></div>
+    </div>
+    <p class="note">We also provide IT resource augmentation and technical support for startups.</p>
+  </div>
+</section>
+
+<section id="training-record" class="band mist trwrap">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Corporate AI Training record</h2>
+      <p class="lead">Selected programmes delivered by our training lead, Md Hasan Mahfuz, with institutions, ministries and companies.</p>
+    </div>
+    <div class="statpanel" aria-label="Training figures">
+      <div class="stat"><b>1,000+</b><span>Participants trained in AI</span></div>
+      <div class="stat"><b>200</b><span>Pharma plant staff in one automation programme, 3 batches</span></div>
+      <div class="stat"><b>25+</b><span>Startups mentored, including 15 NASA Space Apps teams</span></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Filter training by audience" id="rtabs" style="margin-top:36px"></div>
+    <div class="card rec"><div class="tbl-wrap"><table>
+      <thead><tr><th>Programme</th><th>Audience</th><th>Delivered with</th><th>Reach</th><th>When</th></tr></thead>
+      <tbody id="rbody"></tbody>
+    </table></div></div>
+    <p class="note">Source: hasanmahfuz.site. Participant figures are minimum counts as published there.</p>
+  </div>
+</section>
+
+<section id="industries" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Industries we have built for</h2>
+      <p class="lead">Each AI engagement starts from what we already know about your sector's systems, rules and data.</p>
+    </div>
+    <div class="tiles four">
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-signal"/></svg></div><h3>Telecom</h3><p>HR, learning, recruitment and data platforms for Robi.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-bank"/></svg></div><h3>Banking and finance</h3><p>SME banking app for BRAC Bank with portfolio tracking.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-health"/></svg></div><h3>Pharma and healthcare</h3><p>AI courses for doctors, Computer System Validation training, clinic websites.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-cart"/></svg></div><h3>Retail and eCommerce</h3><p>nopCommerce stores for Pavilion Lifestyle and Peppermayo.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-book"/></svg></div><h3>Education</h3><p>School management and learning platforms.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-play"/></svg></div><h3>Media and entertainment</h3><p>Binge apps, APIs and admin portal across mobile and TV.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-factory"/></svg></div><h3>Apparel and manufacturing</h3><p>Clients include Nilorn and Nixon Footwear.</p></div>
+      <div class="tile"><div class="ti"><svg class="ic"><use href="#i-leaf"/></svg></div><h3>Environment and consulting</h3><p>Content platform for Environmental Concern Consultant.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="band mist">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Delivery record</h2>
+      <p class="lead">Selected projects for large organisations, with what we built and what it runs on.</p>
+    </div>
+    <div class="cases">
+      <article class="case"><figure class="shot"><img src="work/robi.jpg" alt="Nine Robi platform login screens: Info360, Rightstart, e-learning, SIM manager, NGP, TRM, recruitment, core HRIS and evaluation" width="910" height="682" loading="lazy"></figure><div class="big">9</div><div class="lab">internal platforms</div><h3>Robi Axiata</h3><p>Core HRIS, recruitment, e-learning, evaluation, an information portal (Info360) and more, plus Android apps for staff.</p><div class="stk">PHP, Vue.js, Oracle DB, Elasticsearch, Android</div></article>
+      <article class="case"><figure class="shot"><img src="work/bracbank.jpg" alt="BRAC Bank SME app screens: secure sign-in, portfolio dashboard and loan product campaigns" width="1060" height="620" loading="lazy"></figure><div class="big">3</div><div class="lab">modules in the SME app</div><h3>BRAC Bank</h3><p>Secure SME banking app with multi-factor sign-in, real-time portfolio tracking, overdue account monitoring and loan product campaigns.</p><div class="stk">Mobile and web, secure portal</div></article>
+      <article class="case"><figure class="shot"><img src="work/binge.jpg" alt="Binge mobile app screens: sign-in, featured content, home feed and live TV" width="1054" height="586" loading="lazy"></figure><div class="big">7</div><div class="lab">delivery workstreams</div><h3>Binge</h3><p>Consumer media across phone and TV: app design, website, mobile and TV APIs, middleware for both screens, and the admin portal.</p><div class="stk">Mobile, TV, API and middleware</div></article>
+    </div>
+    <p class="note">Also delivered: BRAC task management platform with single sign-on, Pavilion Lifestyle and Peppermayo eCommerce, Pathshala school management.</p>
+  </div>
+</section>
+
+<section id="products" class="band on-navy">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">Products we own and run</h2>
+      <p class="lead">Beyond client projects, we build our own software, so we understand what it takes to keep a product alive.</p>
+    </div>
+    <div class="prods">
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-hr"/></svg></div><h3>Link Vision HRIS</h3><p>HR software that scales with the company, from a lightweight team tool to full enterprise data processing.</p><ul><li>SME</li><li>Corporate</li><li>Enterprise</li></ul></article>
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-book"/></svg></div><h3>EduBangla LMS</h3><p>A multi-tenant learning management system delivered as software as a service for institutions.</p><ul><li>SaaS</li><li>Multi-tenant</li><li>Bengali-first</li></ul></article>
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-mic"/></svg></div><h3>Bangla Voice Prescription</h3><p>Turns a Bengali doctor-patient consultation into an English prescription, with panels for admins, doctors and patients.</p><ul><li>Speech to text</li><li>Healthcare AI</li><li>Three panels</li></ul></article>
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-shield"/></svg></div><h3>QRCertificate</h3><p>Issue tamper-evident training certificates in bulk. Each one carries a QR code linked to a public verification page, so anyone can confirm it is genuine.</p><ul><li>Bulk CSV and Excel import</li><li>QR verification</li><li>Revoke and reissue</li></ul><a class="gh" href="https://github.com/himonmist/QRCertificate" target="_blank" rel="noopener">View source on GitHub</a></article>
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-target"/></svg></div><h3>LeadFlow CRM</h3><p>A multi-tenant CRM that follows each customer from first lead to delivered service or training, with activities, quotations, invoices and repeat business in one workflow.</p><ul><li>Multi-tenant SaaS</li><li>Role permissions</li><li>Quotes and invoices</li></ul><a class="gh" href="https://github.com/himonmist/LeadFlow-CRM" target="_blank" rel="noopener">View source on GitHub</a></article>
+      <article class="prod"><div class="ti"><svg class="ic"><use href="#i-chart"/></svg></div><h3>Biotech Feasibility Dashboard</h3><p>Upload a biotech product feasibility workbook and get an interactive dashboard: five-year revenue by indication, top products and molecule mix, in BDT crore.</p><ul><li>Excel upload</li><li>Interactive filters</li><li>Pharma portfolio</li></ul><a class="gh" href="https://github.com/himonmist/biotech_powerbi_dashboard" target="_blank" rel="noopener">View source on GitHub</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="band tech">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2">Technology we work with</h2></div>
+    <div class="tabs" role="tablist" aria-label="Technology categories" id="ttabs" style="margin-top:0"></div>
+    <ul class="chips" id="tchips"></ul>
+  </div>
+</section>
+
+<section id="approach" class="band mist">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="h2">How an engagement runs</h2>
+      <p class="lead">The same four steps apply whether you hire us for advice, a build or a course. You decide at the end of each step whether to continue.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Assess</h3><p>We map your processes, data and constraints, and agree what success looks like in numbers.</p></li>
+      <li><h3>Prototype</h3><p>A working version on your real data, tested with the people who will use it.</p></li>
+      <li><h3>Integrate</h3><p>We connect it to your systems with security, approvals and monitoring in place.</p></li>
+      <li><h3>Hand over</h3><p>Your team is trained to operate it, with documentation and a support plan.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="reach" class="band on-navy">
+  <div class="wrap">
+    <div class="off">
+      <div>
+        <h2 class="h2">Working hours that overlap with yours</h2>
+        <p class="lead" style="margin-top:20px">Headquartered in Dhaka, with projects delivered in Bangladesh, Malaysia, the UK, the USA and Canada. The bars show when a 09:00 to 18:00 Dhaka day falls in each city, right now.</p>
+        <p class="note" id="dhaka-status"></p>
+      </div>
+      <div class="dcard">
+        <div class="clocks" id="clocks" aria-live="off"></div>
+        <p class="note">Green is the Dhaka working day shown in that city's local time. The white marker is the current time there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team" class="band">
+  <div class="wrap team">
+    <div class="who">
+      <h2 class="h2">Led by engineers who also teach</h2>
+      <div class="person">
+        <img class="avatar" src="mahfuz.jpg" alt="Md Hasan Mahfuz" width="440" height="440">
+        <div><h3>Md Hasan Mahfuz</h3><p class="role">CTO and AI Architect</p></div>
+      </div>
+      <p class="bio">Nineteen years across telecom BSS/OSS, enterprise SaaS and AI training. He designs the systems we deliver and leads our corporate programmes.</p>
+      <ul class="cred">
+        <li><b>JICA-certified Trainer of Trainers</b><span>AI, software architecture and Agile</span></li>
+        <li><b>NASA Space Apps mentor</b><span>2021, 2022, 2024 and 2025</span></li>
+        <li><b>World Bank DEIED startup mentor</b><span>UIHP and BHTPA, 2025</span></li>
+        <li><b>Startup judge, IBA Innovation</b><span>Co-founder of DECORION AI at Antler Malaysia</span></li>
+        <li><b>CSM, PRINCE2 Practitioner, ITIL V4</b><span>MSc CSE (UIU), BSc CSE (MIST)</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Member associations</h3>
+      <ul class="assoc">
+        <li><span class="alogo"><img src="members/basis.png" alt="BASIS logo" width="232" height="77"></span><div><b>BASIS</b><span>Bangladesh Association of Software and Information Services</span><em>Member no. GE-21-02-0047</em></div></li>
+        <li><span class="alogo"><img src="members/ecab.png" alt="e-CAB logo" width="129" height="77"></span><div><b>e-CAB</b><span>e-Commerce Association of Bangladesh</span><em>Member no. 0788</em></div></li>
+        <li><span class="alogo"><img src="members/bacco.png" alt="BACCO logo" width="354" height="98"></span><div><b>BACCO</b><span>Bangladesh Association of Contact Center and Outsourcing</span><em>Member no. 2021.0162.1000.0162</em></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="band mist">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2">Questions buyers ask first</h2></div>
+    <div class="faq">
+      <details><summary>How do you work with clients in other time zones?</summary><p>The clocks above show the overlap with Dhaka for each city. We agree fixed meeting windows at the start, and between meetings the team works from written updates and a shared board.</p></details>
+      <details><summary>Can training be delivered in English?</summary><p>Yes. Programmes run in English or Bengali, on-site or online, using your own documents and tools for the exercises.</p></details>
+      <details><summary>Where does our data go?</summary><p>We work under NDA, and we can design workflows that keep your data inside your own cloud or network. We agree the data rules with your security team before any build starts.</p></details>
+      <details><summary>Do you only build AI?</summary><p>No. AI work sits on our software engineering practice, so we can also build the web, mobile and integration layers that a working AI system needs.</p></details>
+      <details><summary>How do we start?</summary><p>Book a consultation. We reply with the right person on our team and a proposed next step, usually an assessment of one process or one team.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="box on-navy">
+      <h2>Ready to put AI to work in your business?</h2>
+      <div class="cta-row">
+        <a class="btn lime" href="#contact">Book a consultation</a>
+        <a class="btn ghost-navy" href="https://wa.me/8801847347832" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="band" style="padding-top:clamp(24px,4vw,48px)">
+  <div class="wrap contact">
+    <div>
+      <h2 class="h2">Tell us what you want AI to do</h2>
+      <p class="lead" style="margin-top:20px">Send two or three lines about your goal. We reply with the right person on our team and a proposed next step.</p>
+      <div class="rows">
+        <div class="rw"><span class="fic"><svg class="ic"><use href="#i-mail"/></svg></span><div><small>Email</small><b id="v-email">info@linkvisionsoft.com</b></div><button class="cp" type="button" data-copy="v-email">Copy</button></div>
+        <div class="rw"><span class="fic"><svg class="ic"><use href="#i-chat"/></svg></span><div><small>WhatsApp</small><b id="v-wa">+8801847347832</b></div><a class="cp" href="https://wa.me/8801847347832" target="_blank" rel="noopener">Open chat</a></div>
+        <div class="rw"><span class="fic"><svg class="ic"><use href="#i-pin"/></svg></span><div><small>Office</small><b id="v-addr">44/3 Polash Nagar, Mirpur-11, Dhaka</b></div><button class="cp" type="button" data-copy="v-addr">Copy</button></div>
+      </div>
+    </div>
+    <form id="enq" novalidate>
+      <div class="two">
+        <div class="fld"><label for="f-name">Your name</label><input id="f-name" autocomplete="name" required></div>
+        <div class="fld"><label for="f-company">Company</label><input id="f-company" autocomplete="organization" required></div>
+      </div>
+      <div class="fld"><label for="f-email">Work email</label><input id="f-email" type="email" autocomplete="email" required></div>
+      <div class="fld"><label for="f-int">I'm interested in</label>
+        <select id="f-int">
+          <option>Enterprise AI Consulting</option>
+          <option>AI Automation</option>
+          <option>Corporate AI Training</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="fld"><label for="f-msg">What do you want to achieve?</label><textarea id="f-msg" placeholder="Example: cut the time our support team spends sorting tickets."></textarea></div>
+      <p class="err" id="f-err" role="alert" hidden></p>
+      <div><button class="btn green" type="submit">Prepare my enquiry</button></div>
+      <div class="out" id="out" hidden>
+        <pre id="out-text"></pre>
+        <div class="cta-row">
+          <a class="btn green" id="out-wa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+          <button class="btn ghost" type="button" id="out-copy">Copy for email</button>
+        </div>
+        <p class="note">Nothing is sent from this page. Use WhatsApp, or paste the copied message into an email to info@linkvisionsoft.com.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><div class="brand">Link Vision</div><p class="brand-p">Software Solution Ltd. Enterprise AI consulting, automation and training from Dhaka.</p></div>
+      <div><h4>Services</h4><ul><li><a href="#consulting">Enterprise AI Consulting</a></li><li><a href="#automation">AI Automation</a></li><li><a href="#training">Corporate AI Training</a></li><li><a href="#training-record">Training record</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#work">Delivery record</a></li><li><a href="#products">Products</a></li><li><a href="#team">Leadership</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>info@linkvisionsoft.com</li><li>+8801847347832</li><li>44/3 Polash Nagar, Mirpur-11, Dhaka</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Link Vision Software Solution Ltd. Member of BASIS, e-CAB and BACCO.</span><a href="https://www.linkvisionsoft.com" target="_blank" rel="noopener">www.linkvisionsoft.com</a></div>
+  </div>
+</footer>
+<a class="float-wa" href="https://wa.me/8801847347832" target="_blank" rel="noopener">Chat on WhatsApp</a>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- live workflow panel ---------- */
+  var S = {
+    telecom:{label:'Telecom support', st:[
+      ['Receive','A billing complaint arrives by app, email and WhatsApp into one queue.'],
+      ['Understand','The model reads the message in Bengali, finds the account and the disputed charge.'],
+      ['Decide','Checks policy and history. Confidence 94%, so it resolves automatically. Below 80% it goes to an agent.'],
+      ['Act','Posts the credit in the CRM, replies to the customer and writes the audit record.']]},
+    bank:{label:'Bank lending', st:[
+      ['Receive','An SME loan application arrives with six scanned documents.'],
+      ['Understand','Extracts income, tax ID and collateral details from the scans.'],
+      ['Decide','Two figures do not match, so the file goes to a credit officer with both sources side by side.'],
+      ['Act','Approved files are pushed to core banking and the relationship manager is notified.']]},
+    pharma:{label:'Pharma quality', st:[
+      ['Receive','A batch deviation report is submitted from the plant floor.'],
+      ['Understand','Classifies severity and matches the event to the right SOP.'],
+      ['Decide','Drafts the corrective action and routes it to QA for sign-off.'],
+      ['Act','Stores the validated record with a complete, time-stamped audit trail.']]}
+  };
+  var keys = Object.keys(S), cur = 'telecom', step = 0, timer = null;
+  var tabs = document.getElementById('tabs'), flow = document.getElementById('flow'),
+      count = document.getElementById('count'), status = document.getElementById('status');
+
+  keys.forEach(function(k){
+    var b = document.createElement('button');
+    b.className = 'tab'; b.type = 'button'; b.setAttribute('role','tab');
+    b.id = 'tab-'+k; b.textContent = S[k].label;
+    b.addEventListener('click', function(){ cur = k; step = 0; renderFlow(); restart(); });
+    tabs.appendChild(b);
+  });
+
+  function renderFlow(){
+    keys.forEach(function(k){ document.getElementById('tab-'+k).setAttribute('aria-selected', k===cur ? 'true':'false'); });
+    flow.innerHTML = '';
+    S[cur].st.forEach(function(s,i){
+      var li = document.createElement('li');
+      li.dataset.i = i;
+      li.innerHTML = '<span class="dot" aria-hidden="true">'+(i+1)+'</span><div><h3></h3><p></p></div>';
+      li.querySelector('h3').textContent = s[0];
+      li.querySelector('p').textContent = s[1];
+      flow.appendChild(li);
+    });
+    paint();
+  }
+  function paint(){
+    var items = flow.children;
+    for(var i=0;i<items.length;i++){
+      items[i].className = reduce ? 'done' : (i < step ? 'done' : (i === step ? 'active' : ''));
+      var d = items[i].querySelector('.dot');
+      d.textContent = (reduce || i < step) ? '✓' : (i+1);
+    }
+    count.textContent = reduce ? 'Complete' : (step >= items.length ? 'Complete' : 'Step '+(step+1)+' of '+items.length);
+    status.lastChild.textContent = (reduce || step >= items.length) ? 'Finished' : 'Running';
+  }
+  function tick(){
+    var n = S[cur].st.length;
+    step++;
+    if(step > n + 1){ step = 0; }
+    paint();
+  }
+  function restart(){
+    if(reduce) return;
+    clearInterval(timer); timer = setInterval(tick, 2100);
+  }
+  renderFlow();
+  restart();
+  var panel = document.querySelector('.panel');
+  panel.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  panel.addEventListener('mouseleave', restart);
+
+  /* ---------- time zone overlap ---------- */
+  var cities = [
+    ['Dhaka','Bangladesh, HQ','Asia/Dhaka'],
+    ['Kuala Lumpur','Malaysia','Asia/Kuala_Lumpur'],
+    ['London','United Kingdom','Europe/London'],
+    ['Toronto','Canada','America/Toronto'],
+    ['New York','USA','America/New_York']
+  ];
+  function nowMin(tz){
+    var p = new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    var h = +p.filter(function(x){return x.type==='hour'})[0].value % 24;
+    var m = +p.filter(function(x){return x.type==='minute'})[0].value;
+    return h*60+m;
+  }
+  function hhmm(m){ return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); }
+  function renderClocks(){
+    var box = document.getElementById('clocks');
+    var dh = nowMin('Asia/Dhaka');
+    box.innerHTML = '';
+    cities.forEach(function(c){
+      var cn = nowMin(c[2]);
+      var start = (((9*60 + (cn - dh)) % 1440) + 1440) % 1440, len = 540, segs = '';
+      if(start + len > 1440){
+        segs += '<span class="seg" style="left:'+(start/14.4)+'%;width:'+((1440-start)/14.4)+'%"></span>';
+        segs += '<span class="seg" style="left:0;width:'+((start+len-1440)/14.4)+'%"></span>';
+      } else {
+        segs += '<span class="seg" style="left:'+(start/14.4)+'%;width:'+(len/14.4)+'%"></span>';
+      }
+      var row = document.createElement('div');
+      row.className = 'clock';
+      row.innerHTML = '<div><b>'+c[0]+'</b><small>'+c[1]+'</small></div><time>'+hhmm(cn)+'</time>'+
+        '<div class="bar" role="img" aria-label="'+c[0]+' local time '+hhmm(cn)+'">'+segs+'<span class="now" style="left:calc('+(cn/14.4)+'% - 1px)"></span></div>';
+      box.appendChild(row);
+    });
+    var open = dh >= 540 && dh < 1080;
+    document.getElementById('dhaka-status').textContent = open
+      ? 'The Dhaka team is in its working day now (local time '+hhmm(dh)+').'
+      : 'The Dhaka team is outside its 09:00 to 18:00 day (local time '+hhmm(dh)+'). WhatsApp messages are answered at the start of the next day.';
+  }
+  renderClocks(); setInterval(renderClocks, 30000);
+
+  /* ---------- contact ---------- */
+  function copyText(text, btn, done){
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent = 'Select and copy'; }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else fallback();
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = document.getElementById(b.getAttribute('data-copy')).textContent, old = b.textContent;
+      copyText(t, b, function(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = old; }, 1600); });
+    });
+  });
+  document.querySelectorAll('[data-interest]').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('f-int').value = a.getAttribute('data-interest'); });
+  });
+  var msg = '';
+  document.getElementById('enq').addEventListener('submit', function(e){
+    e.preventDefault();
+    var n = document.getElementById('f-name').value.trim(), c = document.getElementById('f-company').value.trim(),
+        m = document.getElementById('f-email').value.trim(), i = document.getElementById('f-int').value,
+        g = document.getElementById('f-msg').value.trim(), err = document.getElementById('f-err');
+    if(!n || !c || !/^\S+@\S+\.\S+$/.test(m)){
+      err.hidden = false; err.textContent = 'Add your name, company and a valid work email, then try again.'; return;
+    }
+    err.hidden = true;
+    msg = 'Hello Link Vision, I am '+n+' from '+c+' ('+m+'). I am interested in: '+i+'.' + (g ? '\n\n'+g : '');
+    document.getElementById('out-text').textContent = msg;
+    document.getElementById('out-wa').href = 'https://wa.me/8801847347832?text='+encodeURIComponent(msg);
+    document.getElementById('out').hidden = false;
+  });
+  var oc = document.getElementById('out-copy');
+  oc.addEventListener('click', function(){
+    var old = oc.textContent;
+    copyText('To: info@linkvisionsoft.com\n\n'+msg, oc, function(){ oc.textContent = 'Copied'; setTimeout(function(){ oc.textContent = old; }, 1600); });
+  });
+
+  /* ---------- offering tabs ---------- */
+  var O = [['consulting','Consulting example'],['automation','Automation example'],['training','Training tracks']];
+  var otabs = document.getElementById('otabs');
+  function showO(k){
+    O.forEach(function(o){
+      document.getElementById('otab-'+o[0]).setAttribute('aria-selected', o[0]===k ? 'true':'false');
+      document.getElementById('op-'+o[0]).hidden = o[0]!==k;
+    });
+  }
+  O.forEach(function(o){
+    var b = document.createElement('button');
+    b.className='tab'; b.type='button'; b.id='otab-'+o[0]; b.setAttribute('role','tab'); b.textContent=o[1];
+    b.addEventListener('click', function(){ showO(o[0]); });
+    otabs.appendChild(b);
+  });
+  showO('consulting');
+  document.querySelectorAll('[data-tab]').forEach(function(a){
+    a.addEventListener('click', function(){ showO(a.getAttribute('data-tab')); });
+  });
+
+  /* ---------- technology tabs ---------- */
+  var T = {
+    'Back end and data':['ASP.NET Core','ASP.NET MVC 5','C#','PHP','MS SQL','Oracle DB','Elasticsearch'],
+    'Mobile and front end':['Android','iOS','J2ME','JavaScript','Vue.js','HTML5','CSS3','jQuery'],
+    'CMS and commerce':['WordPress','nopCommerce'],
+    'AI':['Claude API','AI agents','Speech to text','Document extraction']
+  };
+  var ttabs = document.getElementById('ttabs'), tchips = document.getElementById('tchips');
+  function showT(name){
+    Object.keys(T).forEach(function(k,i){ document.getElementById('ttab-'+i).setAttribute('aria-selected', k===name?'true':'false'); });
+    tchips.innerHTML = '';
+    T[name].forEach(function(x){ var li = document.createElement('li'); li.textContent = x; tchips.appendChild(li); });
+  }
+  Object.keys(T).forEach(function(k,i){
+    var b = document.createElement('button');
+    b.className='tab'; b.type='button'; b.id='ttab-'+i; b.setAttribute('role','tab'); b.textContent=k;
+    b.addEventListener('click', function(){ showT(k); });
+    ttabs.appendChild(b);
+  });
+  showT('Back end and data');
+
+  /* ---------- services menu ---------- */
+  var dd = document.getElementById('dd'), ddb = document.getElementById('dd-btn'), ddm = document.getElementById('dd-menu');
+  function setDD(o){ ddm.hidden = !o; ddb.setAttribute('aria-expanded', o?'true':'false'); }
+  ddb.addEventListener('click', function(){ setDD(ddm.hidden); });
+  dd.addEventListener('mouseenter', function(){ if(window.matchMedia('(hover:hover)').matches) setDD(true); });
+  dd.addEventListener('mouseleave', function(){ if(window.matchMedia('(hover:hover)').matches) setDD(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ setDD(false); setM(false); } });
+  document.addEventListener('click', function(e){ if(!dd.contains(e.target)) setDD(false); });
+  ddm.addEventListener('click', function(e){ if(e.target.closest('a')) setDD(false); });
+  var mb = document.getElementById('menu-btn'), mn = document.getElementById('mnav');
+  function setM(o){ mn.hidden = !o; mb.setAttribute('aria-expanded', o?'true':'false'); mb.textContent = o?'Close':'Menu'; }
+  mb.addEventListener('click', function(){ setM(mn.hidden); });
+  mn.addEventListener('click', function(e){ if(e.target.closest('a')) setM(false); });
+
+  /* ---------- training record ---------- */
+  var R = [
+    ['g','AI for Procurement Management, 30th batch','Government officers','National Academy for Planning and Development (NAPD)','50+ officers','Sep 2026, 2 days'],
+    ['g','AI Assisted Project Management, 2 batches','Government officers','ADB CDRC and NAPD','90+ officers','Jul to Sep 2026'],
+    ['g','Generative AI and Leadership, 1st batch','Government officers','NAPD','Multiple ministries','Aug 2026, 5 days'],
+    ['h','OptiMind AI, 4 batches','Ophthalmologists','Bangladesh Medical University and NIOH','190+ doctors','Oct 2026'],
+    ['h','SmartDoc AI','Doctors','Bangladesh Society of Medicine','65+ doctors','Aug 2026'],
+    ['h','HaematoMind AI','Doctors','Dhaka Medical College','40+ doctors','Sep 2026'],
+    ['h','EndoNextAI','Endocrinologists','Bangladesh Endocrine Society','20+ doctors','Oct 2026'],
+    ['h','Pharma AI Edge: AI Automation, 3 batches','Pharma plant staff','Opsonin Pharma','200 staff','Workshop series'],
+    ['h','AI Training for Sales Productivity and Automation','Pharma sales team','Renata Pharma','75+ staff','Sep 2026'],
+    ['h','AI Role in Computer System Validation','Pharma professionals','MN Corp and SoftAidTech Lab, in Malaysia','14 participants','2 days, in person'],
+    ['l','AI Powered Leadership: Cybersecurity, Governance, Ethics and Data Privacy','Professionals','ISACA Dhaka Chapter','50+ participants','Oct 2026, online'],
+    ['e','AI Prompt Engineering and Claude or ChatGPT Programming','Developers','Open-Source Bangladesh Alliance','6 batches','Over 1 year'],
+    ['s','NASA International Space Apps Challenge mentoring','Student teams','NASA Space Apps','15 teams','2021, 2022, 2024, 2025'],
+    ['s','Innovation Idea Development mentor','Universities','University Innovation Hub Program (World Bank and BHTPA)','University teams','2025']
+  ];
+  var RF = [['all','All'],['g','Government'],['h','Pharma and healthcare'],['e','Engineering'],['l','Leadership'],['s','Startups and universities']];
+  var rtabs = document.getElementById('rtabs'), rbody = document.getElementById('rbody');
+  function showR(k){
+    RF.forEach(function(f){ document.getElementById('rt-'+f[0]).setAttribute('aria-selected', f[0]===k?'true':'false'); });
+    rbody.innerHTML = '';
+    R.filter(function(r){ return k==='all' || r[0]===k; }).forEach(function(r){
+      var tr = document.createElement('tr');
+      for(var i=1;i<6;i++){ var td = document.createElement('td'); td.textContent = r[i]; tr.appendChild(td); }
+      rbody.appendChild(tr);
+    });
+  }
+  RF.forEach(function(f){
+    var b = document.createElement('button');
+    b.className='tab'; b.type='button'; b.id='rt-'+f[0]; b.setAttribute('role','tab'); b.textContent=f[1];
+    b.addEventListener('click', function(){ showR(f[0]); });
+    rtabs.appendChild(b);
+  });
+  showR('all');
+})();
+</script>
+
+</body></html>
